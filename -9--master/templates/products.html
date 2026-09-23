@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}สินค้า | Mobile Shop{% endblock %}
+{% block content %}
+<section class="section-head"><div><h1>ข้อมูลสินค้า</h1><p>SELECT จากตาราง PRODUCT</p></div><a class="btn" href="{{ url_for('add_product') }}">+ เพิ่มสินค้า</a></section>
+<div class="card table-wrap"><table>
+<thead><tr><th>รหัส</th><th>สินค้า</th><th>ยี่ห้อ</th><th>รุ่น</th><th>ราคา</th><th>คงเหลือ</th></tr></thead>
+<tbody>{% for row in products %}<tr><td>{{ row.PRODUCT_ID }}</td><td>{{ row.PRODUCT_NAME }}</td><td>{{ row.BRAND }}</td><td>{{ row.MODEL }}</td><td>{{ "{:,.2f}".format(row.PRICE) }}</td><td><span class="stock {% if row.STOCK_QTY <= 3 %}low{% endif %}">{{ row.STOCK_QTY }}</span></td></tr>{% else %}<tr><td colspan="6" class="empty">ยังไม่มีข้อมูล</td></tr>{% endfor %}</tbody>
+</table></div>
+{% endblock %}

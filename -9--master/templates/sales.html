@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}การขาย | Mobile Shop{% endblock %}
+{% block content %}
+<section class="section-head"><div><h1>รายการขาย</h1><p>SELECT จากตาราง SALE พร้อม JOIN ลูกค้าและพนักงาน</p></div><a class="btn" href="{{ url_for('add_sale') }}">+ บันทึกการขาย</a></section>
+<div class="card table-wrap"><table>
+<thead><tr><th>รหัสขาย</th><th>วันที่</th><th>ลูกค้า</th><th>พนักงาน</th><th>ยอดรวม</th><th></th></tr></thead>
+<tbody>{% for row in sales %}<tr><td>{{ row.SALE_ID }}</td><td>{{ row.SALE_DATE }}</td><td>{{ row.CUS_NAME }}</td><td>{{ row.EMP_NAME }}</td><td>{{ "{:,.2f}".format(row.TOTAL_AMOUNT) }} บาท</td><td><a class="link-btn" href="{{ url_for('sale_detail', sale_id=row.SALE_ID) }}">รายละเอียด</a></td></tr>{% else %}<tr><td colspan="6" class="empty">ยังไม่มีข้อมูล</td></tr>{% endfor %}</tbody>
+</table></div>
+{% endblock %}

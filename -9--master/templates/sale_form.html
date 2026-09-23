@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}บันทึกการขาย | Mobile Shop{% endblock %}
+{% block content %}
+<div class="form-page"><div class="form-card wide">
+<h1>บันทึกการขาย</h1><p>INSERT INTO SALE + SALE_DETAIL และตัดสต๊อก PRODUCT</p>
+<form method="post">
+<div class="grid2"><label>ลูกค้า<select name="customer_id" required>{% for c in customers %}<option value="{{ c.CUSTOMER_ID }}">{{ c.CUSTOMER_ID }} - {{ c.CUS_NAME }}</option>{% endfor %}</select></label><label>พนักงานขาย<select name="emp_id" required>{% for e in employees %}<option value="{{ e.EMP_ID }}">{{ e.EMP_ID }} - {{ e.EMP_NAME }}</option>{% endfor %}</select></label></div>
+<div class="grid2"><label>วันที่ขาย<input type="date" name="sale_date" value="{{ today }}" required></label><label>สินค้า<select name="product_id" required>{% for p in products %}<option value="{{ p.PRODUCT_ID }}">{{ p.PRODUCT_ID }} - {{ p.PRODUCT_NAME }} ({{ "{:,.2f}".format(p.PRICE) }} บาท / เหลือ {{ p.STOCK_QTY }})</option>{% endfor %}</select></label></div>
+<label>จำนวนที่ขาย<input type="number" name="qty" min="1" value="1" required></label>
+<div class="form-actions"><a class="btn btn-muted" href="{{ url_for('sales') }}">ยกเลิก</a><button class="btn" type="submit">บันทึกการขาย</button></div>
+</form></div></div>
+{% endblock %}

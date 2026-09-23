@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}เพิ่มลูกค้า | Mobile Shop{% endblock %}
+{% block content %}
+<div class="form-page"><div class="form-card">
+<h1>เพิ่มข้อมูลลูกค้า</h1><p>INSERT INTO CUSTOMER</p>
+<form method="post">
+<label>รหัสลูกค้า<input name="customer_id" maxlength="5" placeholder="C0006" required></label>
+<label>ชื่อ-นามสกุล<input name="cus_name" placeholder="ชื่อลูกค้า" required></label>
+<label>เบอร์โทรศัพท์<input name="cus_phone" maxlength="10" placeholder="0861234567" required></label>
+<div class="form-actions"><a class="btn btn-muted" href="{{ url_for('customers') }}">ยกเลิก</a><button class="btn" type="submit">บันทึกข้อมูล</button></div>
+</form></div></div>
+{% endblock %}

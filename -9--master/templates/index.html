@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}หน้าแรก | Mobile Shop{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <span class="badge">LOCAL WEB APPLICATION</span>
+        <h1>ระบบจัดการร้านขายโทรศัพท์มือถือ</h1>
+        <p>จัดการสินค้า ลูกค้า การขาย และข้อมูลผู้จัดจำหน่ายด้วยฐานข้อมูล SQLite</p>
+    </div>
+    <a class="btn btn-light" href="{{ url_for('add_sale') }}">+ บันทึกการขาย</a>
+</section>
+
+<div class="stats">
+    <div class="card stat"><span>ลูกค้า</span><strong>{{ stats.customers }}</strong><small>รายการ</small></div>
+    <div class="card stat"><span>สินค้า</span><strong>{{ stats.products }}</strong><small>รายการ</small></div>
+    <div class="card stat"><span>การขาย</span><strong>{{ stats.sales }}</strong><small>รายการ</small></div>
+    <div class="card stat"><span>ยอดขายรวม</span><strong>{{ "{:,.2f}".format(stats.revenue) }}</strong><small>บาท</small></div>
+</div>
+
+<section class="section-head"><div><h2>รายการขายล่าสุด</h2><p>ข้อมูลจากตาราง SALE และตารางที่เกี่ยวข้อง</p></div><a class="btn" href="{{ url_for('sales') }}">ดูทั้งหมด</a></section>
+<div class="card table-wrap">
+<table>
+<thead><tr><th>รหัสขาย</th><th>วันที่</th><th>ลูกค้า</th><th>พนักงาน</th><th>ยอดรวม</th></tr></thead>
+<tbody>
+{% for row in recent_sales %}
+<tr><td><a href="{{ url_for('sale_detail', sale_id=row.SALE_ID) }}">{{ row.SALE_ID }}</a></td><td>{{ row.SALE_DATE }}</td><td>{{ row.CUS_NAME }}</td><td>{{ row.EMP_NAME }}</td><td>{{ "{:,.2f}".format(row.TOTAL_AMOUNT) }} บาท</td></tr>
+{% else %}<tr><td colspan="5" class="empty">ยังไม่มีข้อมูล</td></tr>{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}

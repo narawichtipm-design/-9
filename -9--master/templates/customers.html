@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}ลูกค้า | Mobile Shop{% endblock %}
+{% block content %}
+<section class="section-head"><div><h1>ข้อมูลลูกค้า</h1><p>SELECT จากตาราง CUSTOMER</p></div><a class="btn" href="{{ url_for('add_customer') }}">+ เพิ่มลูกค้า</a></section>
+<div class="card table-wrap">
+<table><thead><tr><th>รหัสลูกค้า</th><th>ชื่อ-นามสกุล</th><th>เบอร์โทรศัพท์</th></tr></thead>
+<tbody>{% for row in customers %}<tr><td>{{ row.CUSTOMER_ID }}</td><td>{{ row.CUS_NAME }}</td><td>{{ row.CUS_PHONE }}</td></tr>{% else %}<tr><td colspan="3" class="empty">ยังไม่มีข้อมูล</td></tr>{% endfor %}</tbody>
+</table></div>
+{% endblock %}

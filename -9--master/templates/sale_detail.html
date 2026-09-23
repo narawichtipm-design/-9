@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}รายละเอียด {{ sale.SALE_ID }} | Mobile Shop{% endblock %}
+{% block content %}
+<section class="section-head"><div><h1>รายละเอียดการขาย {{ sale.SALE_ID }}</h1><p>ข้อมูลจาก SALE และ SALE_DETAIL</p></div><a class="btn btn-muted" href="{{ url_for('sales') }}">กลับ</a></section>
+<div class="details-grid">
+<div class="card info"><b>ลูกค้า</b><span>{{ sale.CUS_NAME }}</span><small>{{ sale.CUS_PHONE }}</small></div>
+<div class="card info"><b>พนักงาน</b><span>{{ sale.EMP_NAME }}</span><small>วันที่ {{ sale.SALE_DATE }}</small></div>
+<div class="card info total"><b>ยอดรวม</b><strong>{{ "{:,.2f}".format(sale.TOTAL_AMOUNT) }} บาท</strong></div>
+</div>
+<div class="card table-wrap"><table><thead><tr><th>รหัสสินค้า</th><th>สินค้า</th><th>จำนวน</th><th>ราคาต่อหน่วย</th><th>รวม</th></tr></thead>
+<tbody>{% for d in details %}<tr><td>{{ d.PRODUCT_ID }}</td><td>{{ d.PRODUCT_NAME }}</td><td>{{ d.QTY }}</td><td>{{ "{:,.2f}".format(d.UNIT_PRICE) }}</td><td>{{ "{:,.2f}".format(d.QTY * d.UNIT_PRICE) }}</td></tr>{% endfor %}</tbody></table></div>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}ผู้จัดจำหน่าย | Mobile Shop{% endblock %}
+{% block content %}
+<section class="section-head"><div><h1>ผู้จัดจำหน่ายและสินค้า</h1><p>SELECT จาก SUPPLIER_PRODUCT พร้อม JOIN SUPPLIER และ PRODUCT</p></div></section>
+<div class="card table-wrap"><table><thead><tr><th>รหัสผู้จัดจำหน่าย</th><th>ชื่อผู้จัดจำหน่าย</th><th>โทรศัพท์</th><th>รหัสสินค้า</th><th>สินค้า</th></tr></thead>
+<tbody>{% for row in suppliers %}<tr><td>{{ row.SUPPLIER_ID }}</td><td>{{ row.SUPPLIER_NAME }}</td><td>{{ row.SUPPLIER_PHONE }}</td><td>{{ row.PRODUCT_ID }}</td><td>{{ row.PRODUCT_NAME }}</td></tr>{% else %}<tr><td colspan="5" class="empty">ยังไม่มีข้อมูล</td></tr>{% endfor %}</tbody></table></div>
+{% endblock %}
